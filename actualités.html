@@ -1,0 +1,79 @@
+<!DOCTYPE html> <!-- indique que le document est en HTML5 -->
+<html lang="fr"><!-- le HTML est en français -->
+<head> <!-- contient les métadonnées -->
+<meta charset="UTF-8">  <!-- Sert à définir des métadonnées (encodage, description…). -->
+<title>Actualités 53e RT</title> <!-- mettre comme titre actualités 53e rt-->
+<link rel="stylesheet" href="style.css"> <!--définit la relation entre le document courant et une ressource externe
+                                           href et rel possede la valeur style.css qui indique que c'est une feuille de style-->
+</head><!-- contient les métadonnées -->
+<body><!-- Contient tout le contenu visible de la page. -->
+<header> <!-- En-tête du site ou d'une section (logo, menu, etc.). -->
+<h1>Actualités</h1> <!--Titres hiérarchisés (du plus important <h1> au moins important <h6>). -->
+<nav><!--Section de navigation (menu, liens…). -->
+<ul><!--Liste non ordonnée (avec des puces). -->
+    <li><a href="index.html">Accueil</a></li>  <!--Élément d’une liste (ul ou ol) pour synopsis-->
+    <li><a href="unité.html">Présentation de l'unité</a></li>  <!--Élément d’une liste (ul ou ol) pour synopsis-->
+    <li><a href="matériel.html">Matériel et véhicules</a></li>  <!--Élément d’une liste (ul ou ol) pour synopsis-->
+    <li><a href="carte.html">Carte</a></li> <!--Élément d’une liste (ul ou ol) pour synopsis-->
+    <li><a href="contact.html">Contact</a></li>  <!--Élément d’une liste (ul ou ol) pour synopsis-->
+</ul> <!--Liste non ordonnée (avec des puces). -->
+</nav><!--Section de navigation (menu, liens…). -->
+</header><!-- En-tête du site ou d'une section (logo, menu, etc.). -->
+<main>
+<h2>Liste des actualités</h2> <!--Paragraphe de texte. -->
+<div id="newsList"></div> <!-- Les actualités seront ajoutées ici par JS -->
+<h2>Ajouter une actualité</h2> <!--Paragraphe de texte. -->
+<form id="newsForm">
+<input type="text" id="titre" placeholder="Titre de l'actualité">
+<textarea id="contenu" placeholder="Contenu de l'actualité" rows="4"></textarea>
+<button type="button" id="ajouter">Ajouter</button>
+</form>
+</main>
+<script>
+// Tableau des actualités
+let news = [ //Création et accès aux propriétés d'objets
+    { titre: "Exercices SIC", contenu: "Déploiement STC-E en multinational." },
+    { titre: "OPEX Sahel", contenu: "Projection PROTERRE avec VAB T3." },
+    { titre: "Sentinelle", contenu: "Soutien sécurité intérieur 2026." },
+    { titre: "35 ans Lunéville", contenu: "Cérémonie commémorative." },
+];
+function afficherActualites() { // Fonction pour afficher les actualités
+const newsDiv = document.getElementById("newsList");
+newsDiv.innerHTML = ""; // vider avant affichage
+news.forEach(actu => {
+const div = document.createElement("div");
+div.style.backgroundColor = "rgba(0,0,0,0.5)";
+div.style.margin = "10px auto";
+div.style.padding = "15px";
+div.style.borderRadius = "8px";
+div.style.width = "80%";
+div.style.textAlign = "left";
+const h3 = document.createElement("h3");
+h3.textContent = actu.titre;
+h3.style.color = "#87cefa";
+const p = document.createElement("p");
+p.textContent = actu.contenu;
+p.style.color = "white";
+div.appendChild(h3);
+div.appendChild(p);
+newsDiv.appendChild(div);
+});
+}
+// Afficher les actualités dès le chargement
+afficherActualites();
+// Ajouter une actualité via le formulaire
+document.getElementById("ajouter").addEventListener("click", () => {
+const titreInput = document.getElementById("titre");
+const contenuInput = document.getElementById("contenu");
+if(titreInput.value.trim() === "" || contenuInput.value.trim() === ""){
+alert("Veuillez remplir les deux champs !");
+return;
+}
+news.push({ titre: titreInput.value.trim(), contenu: contenuInput.value.trim() });
+afficherActualites();
+titreInput.value = "";
+contenuInput.value = "";
+});
+</script>
+</body>
+</html>

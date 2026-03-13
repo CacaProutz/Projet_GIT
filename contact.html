@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Contact 53e RT</title>
+<link rel="stylesheet" href="style.css"> <!-- CSS centralisé pour tout le site -->
+</head>
+<body>
+<header>
+<h1>Contact</h1>
+<p>Envoyez-nous un message </p>
+ <nav>
+<ul>
+ <li><a href="accueil.html">Accueil</a></li>
+ <li><a href="unité.html">Présentation de l'unité</a></li>
+ <li><a href="matériel.html">Matériel et véhicules</a></li>
+ <li><a href="carte.html">Ou est le 53e RT</a></li>
+ <li><a href="actualités.html">Actualités </a></li> <!--Élément d’une liste (ul ou ol)pour avis-->
+</ul>
+</nav>
+</header>
+<main>
+<form id="contactForm">
+<input type="text" id="nom" placeholder="Nom">
+<input type="email" id="email" placeholder="Email">
+<textarea id="message" placeholder="Message" rows="5"></textarea>
+<div class="buttons">
+<button type="button" id="envoyer">Envoyer</button>
+ <button type="button" id="effacer">Effacer</button>
+</div>
+</form>
+</main>
+<script>
+// Récupération des éléments
+const nom = document.getElementById("nom");
+const email = document.getElementById("email");
+const message = document.getElementById("message");
+const envoyer = document.getElementById("envoyer");
+const effacer = document.getElementById("effacer");
+// Fonction pour vérifier si un champ est vide
+function verifierChamps() {
+let valide = true;
+[nom, email, message].forEach(champ => {
+if (champ.value.trim() === "") {
+champ.classList.add("error"); // bordure rouge si vide
+ valide = false;
+ } else {
+champ.classList.remove("error");
+  }
+  });
+return valide;
+}
+// Envoi du formulaire
+envoyer.addEventListener("click", () => {
+if (verifierChamps()) {
+alert("Message envoyé !");
+ nom.value = "";
+email.value = "";
+ message.value = "";
+}
+});
+// Effacer les champs
+effacer.addEventListener("click", () => {
+[nom, email, message].forEach(champ => {
+champ.value = "";
+champ.classList.remove("error");
+ });
+});
+</script>
+</body>
+</html>
