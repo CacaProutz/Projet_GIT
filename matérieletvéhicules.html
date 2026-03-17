@@ -1,117 +1,71 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Document HTML5 -->
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Matériel du 53e RT</title>
-<link rel="stylesheet" href="style.css">
-<style>
-
-/* style général du site */
-body{
-    font-family: Arial, sans-serif;
-    background-image: url("https://img.freepik.com/vecteurs-libre/arriere-plan-bleu-demi-ton-blanc_53876-114466.jpg");
-    background-size: cover;
-    color: white;
-    text-align: center;
-    margin: 0;
-}
-h1{ font-size: 40px; }
-h2{ margin-top: 30px; }
-/* tableau matériel et véhicules */
-table{
-    margin: auto;
-    border-collapse: collapse;
-    background-color: rgba(0,0,0,0.5);
-    width: 80%;
-}
-th, td{
-    padding: 10px;
-    border: 1px solid white;
-}
-tr:hover{
-    background-color: rgba(255,255,255,0.2);
-    cursor: pointer;
-}
-/* image qui s’affiche au survol */
-#photo{
-    margin-top: 20px;
-    max-width: 400px;
-    border: 2px solid white;
-    display: none; /* invisible par défaut */
-}
-/* formulaire ajout matériel */
-input, select{
-    padding: 8px;
-    margin: 10px;
-    border-radius: 5px;
-    border: none;
-}
-button{
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #87cefa;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-button:hover{
-    background-color: #87cefa;
-}
-/* responsive */
-@media screen and (max-width: 600px){
-    table{ width: 95%; }
-    button, input, select{ width: 90%; margin: 5px auto; }
-}
-</style>
+  <meta charset="UTF-8"> <!-- Encodage -->
+  <title>Matériel du 53e RT</title> <!-- Titre de la page -->
+  <link rel="stylesheet" href="style.css"> <!-- Lien vers le CSS -->
 </head>
 <body>
 <h1>Matériel et systèmes du 53e RT</h1>
-<!-- tableau -->
+<!-- Menu de navigation -->
+<nav>
+  <ul>
+    <li><a href="accueil.html">Accueil</a></li>
+    <li><a href="unite.html">Présentation de l'unité</a></li>
+    <li><a href="materiel.html">Matériel et véhicules</a></li>
+    <li><a href="carte.html">Où est le 53e RT</a></li>
+    <li><a href="contact.html">Contacts</a></li>
+    <li><a href="actualites.html">Actualités</a></li>
+  </ul>
+</nav>
+<!-- Tableau des matériels -->
 <table border="1">
-<tr>
-<th>Nom</th>
-<th>Catégorie</th>
-</tr>
-<tbody id="tableau"></tbody>
+  <tr> <!--ligne du tableau -->
+    <th>Nom</th> <!--cellule d’en-tête -->
+    <th>Catégorie</th> 
+  </tr>
+  <tbody id="tableau"></tbody> <!--zone du tableau où on met les données-->
 </table>
-<!-- image affichée au survol -->
-<img id="photo" src="" alt="Photo du matériel">
+<!-- Image affichée au survol -->
+<img id="photo" src="" alt="Photo du matériel" style="display:none; width:300px;">
 <script>
-// tableau des matériels avec photo (exemples d'images libres)
+// Liste des matériels
 let materiels = [
-{nom:"VAB T3", categorie:"Véhicule", photo:"https://i62.servimg.com/u/f62/11/14/78/36/vab_st12.jpg"},
-{nom:"Station T2", categorie:"Communication", photo:"https://lh6.googleusercontent.com/proxy/28rmRctyk4SxiZnKJZIfhimulUSHJmUa7_XBPGEGv5zAxDRshbhEfdSGpthFiEcGVgqHBWNhWbs9fDoIwTY-2G-eYZD__y9hOTwQjaBWfjlTcux4a93TAYno4npQO4-Ud2xCF7jgS63yMScQBPttE4H10_GOgpZpvUrY-fCQz8HMvse1hGlS4r_9DA09djuvHPMZAsst-IeronXHziwAzsXIGQKCmCYn74HpN5YEgyl-ZDjaaDak9UdBHKLdE9_60XCIJ96icisDyQzj10whIwU9MBpAJJ9EFjaLs5raY28RR5PeucpkmRf7ANpoVKYPdT-YtIhAbSZ3e4pFjy6nTjmoyf1-pg"},
-{nom:"CHAINE HERTZIENNE (CHF)", categorie:"Communication", photo:"https://www.opex360.com/wp-content/uploads/28ert-20170828.jpg"},
-{nom:"PR4G", categorie:"Communication", photo:"https://ezines.homecomputing.fr/fr/rafale/15/Images/06/ER315.jpg"},
-{nom:"CART", categorie:"Communication", photo:"https://www.accesradio.com/wp-content/uploads/81616-SRX2200_Radio-1-Front_Right3q.jpg"},
-{nom:"CECORE", categorie:"Centre de commandement", photo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQJOHiWe4P5sqIAIHLVyeKfE_q4BJMKu0qmg&s"},
-{nom:"PABX", categorie:"Téléphonie", photo:"https://www.techni-contact.com/ressources/images/produits/zoom/telephone-simple-de-pabx-siemens-5168817-1.jpg"},
-]
-// fonction pour afficher le tableau
+  {nom:"VAB T3", categorie:"Véhicule", photo:"https://i62.servimg.com/u/f62/11/14/78/36/vab_st12.jpg"},
+  {nom:"Station T2", categorie:"Communication", photo:"https://lh6.googleusercontent.com/proxy/..."},
+  {nom:"Chaîne hertzienne (CHF)", categorie:"Communication", photo:"https://www.opex360.com/wp-content/uploads/28ert-20170828.jpg"},
+  {nom:"PR4G", categorie:"Communication", photo:"https://ezines.homecomputing.fr/fr/rafale/15/Images/06/ER315.jpg"},
+  {nom:"CART", categorie:"Communication", photo:"https://www.accesradio.com/wp-content/uploads/81616-SRX2200_Radio-1-Front_Right3q.jpg"},
+  {nom:"CECORE", categorie:"Centre de commandement", photo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQJOHiWe4P5sqIAIHLVyeKfE_q4BJMKu0qmg&s"},
+  {nom:"PABX", categorie:"Téléphonie", photo:"https://www.techni-contact.com/ressources/images/produits/zoom/telephone-simple-de-pabx-siemens-5168817-1.jpg"}
+];
+// Fonction pour afficher le tableau
 function afficher() {
-    let tableau = document.getElementById("tableau");
-    tableau.innerHTML = "";
-    for(let i=0; i<materiels.length; i++){
-        let ligne = document.createElement("tr");
-        ligne.innerHTML = "<td>" + materiels[i].nom + "</td><td>" + materiels[i].categorie + "</td>";
-
-        // survol : affiche la photo
-        ligne.addEventListener("mouseover", function(){
-            let photo = document.getElementById("photo");
-            photo.src = materiels[i].photo;
-            photo.style.display = "block";
-        });
-
-        // souris quittant la ligne : cache la photo
-        ligne.addEventListener("mouseout", function(){
-            let photo = document.getElementById("photo");
-            photo.style.display = "none";
-        });
-
-        tableau.appendChild(ligne);
-    }
+  let tableau = document.getElementById("tableau");
+  tableau.innerHTML = ""; // Vide le tableau
+  // Boucle sur les matériels
+  for (let i = 0; i < materiels.length; i++) {
+    let ligne = document.createElement("tr");
+    // Remplir la ligne
+    ligne.innerHTML =
+      "<td>" + materiels[i].nom + "</td>" +
+      "<td>" + materiels[i].categorie + "</td>";
+    // Quand la souris passe dessus
+    ligne.addEventListener("mouseover", function() {
+      let photo = document.getElementById("photo");
+      photo.src = materiels[i].photo;
+      photo.style.display = "block";
+    });
+    // Quand la souris quitte la ligne
+    ligne.addEventListener("mouseout", function() {
+      let photo = document.getElementById("photo");
+      photo.style.display = "none";
+    });
+    // Ajouter la ligne au tableau
+    tableau.appendChild(ligne);
+  }
 }
+// Lancer l'affichage
 afficher();
 </script>
 </body>

@@ -1,71 +1,91 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Contact 53e RT</title>
-<link rel="stylesheet" href="style.css"> <!-- CSS centralisé pour tout le site -->
+  <meta charset="UTF-8">
+  <title>Les Contacts du 53e RT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Ajout d'un style pour la bordure rouge en cas d'erreur */
+    .erreur {
+      border: 2px solid red;
+    }
+  </style>
 </head>
 <body>
-<header>
-<h1>Contact</h1>
-<p>Envoyez-nous un message </p>
- <nav>
-<ul>
- <li><a href="accueil.html">Accueil</a></li>
- <li><a href="unité.html">Présentation de l'unité</a></li>
- <li><a href="matériel.html">Matériel et véhicules</a></li>
- <li><a href="carte.html">Ou est le 53e RT</a></li>
- <li><a href="actualités.html">Actualités </a></li> <!--Élément d’une liste (ul ou ol)pour avis-->
-</ul>
-</nav>
-</header>
-<main>
-<form id="contactForm">
-<input type="text" id="nom" placeholder="Nom">
-<input type="email" id="email" placeholder="Email">
-<textarea id="message" placeholder="Message" rows="5"></textarea>
-<div class="buttons">
-<button type="button" id="envoyer">Envoyer</button>
- <button type="button" id="effacer">Effacer</button>
-</div>
-</form>
-</main>
-<script>
-// Récupération des éléments
-const nom = document.getElementById("nom");
-const email = document.getElementById("email");
-const message = document.getElementById("message");
-const envoyer = document.getElementById("envoyer");
-const effacer = document.getElementById("effacer");
-// Fonction pour vérifier si un champ est vide
-function verifierChamps() {
-let valide = true;
-[nom, email, message].forEach(champ => {
-if (champ.value.trim() === "") {
-champ.classList.add("error"); // bordure rouge si vide
- valide = false;
- } else {
-champ.classList.remove("error");
-  }
-  });
-return valide;
-}
-// Envoi du formulaire
-envoyer.addEventListener("click", () => {
-if (verifierChamps()) {
-alert("Message envoyé !");
- nom.value = "";
-email.value = "";
- message.value = "";
-}
-});
-// Effacer les champs
-effacer.addEventListener("click", () => {
-[nom, email, message].forEach(champ => {
-champ.value = "";
-champ.classList.remove("error");
- });
-});
-</script>
+  <header>
+    <h1>Contact</h1>
+    <nav>
+      <ul>
+        <li><a href="accueil.html">Accueil</a></li> <!-- Élément d'une liste (ul ou ol) pour accès à la page d'accueil -->
+        <li><a href="unité.html">Présentation de l'unité</a></li> <!-- Élément d'une liste pour accéder à la présentation de l'unité -->
+        <li><a href="matériel.html">Matériel et véhicules</a></li> <!-- Élément d'une liste pour accéder aux informations sur le matériel et les véhicules -->
+        <li><a href="carte.html">Carte</a></li> <!-- Élément d'une liste pour afficher la carte -->
+        <li><a href="contact.html">Contact</a></li> <!-- Élément d'une liste pour accéder à la page de contact -->
+        <li><a href="actualités.html">Actualités</a></li> <!-- Élément d'une liste pour voir les actualités -->
+      </ul>
+    </nav>
+  </header>
+  <main> <!-- contenu principal de la page -->
+    <h2>Formulaire de Contact</h2>
+    <form id="contactForm">
+      <label for="nom">Nom</label> <!-- représente une légende pour un élément d'une interface utilisateur -->
+      <input type="text" id="nom" placeholder="Votre nom">
+      <br><br> <!--  retour à la ligne sans création de nouveau paragraphe. -->
+      <label for="email">Email</label> <!-- représente une légende pour un élément d'une interface utilisateur -->
+      <input type="email" id="email" placeholder="Votre email">
+      <br><br> <!--  retour à la ligne sans création de nouveau paragraphe. -->
+      <label for="message">Message</label> <!-- représente une légende pour un élément d'une interface utilisateur -->
+      <textarea id="message" placeholder="Votre message" rows="4"></textarea>
+      <br><br> <!--  retour à la ligne sans création de nouveau paragraphe. -->
+      <button type="button" id="envoyer">Envoyer</button>
+      <button type="button" id="reset">Réinitialiser</button>
+    </form>
+  </main> <!--contenu principal de la page -->
+  <script>
+    // Fonction pour valider le formulaire
+    function validerFormulaire() {
+      // Récupérer les valeurs des champs
+      const nom = document.getElementById('nom');
+      const email = document.getElementById('email');
+      const message = document.getElementById('message');
+      let valid = true;
+      // Réinitialisation des bordures
+      nom.classList.remove('erreur');
+      email.classList.remove('erreur');
+      message.classList.remove('erreur');
+      // Vérification des champs
+      if (nom.value.trim() === "") {
+        nom.classList.add('erreur');
+        valid = false;
+      }
+      if (email.value.trim() === "") {
+        email.classList.add('erreur');
+        valid = false;
+      }
+      if (message.value.trim() === "") {
+        message.classList.add('erreur');
+        valid = false;
+      }
+      return valid;
+    }
+    // Gestion du bouton "Envoyer"
+    document.getElementById('envoyer').addEventListener('click', function () {
+      if (validerFormulaire()) {
+        alert("Message envoyé !");
+        // Réinitialisation des champs après envoi
+        document.getElementById('contactForm').reset();
+      } else {
+        alert("Veuillez remplir tous les champs !");
+      }
+    });
+    // Gestion du bouton "Réinitialiser"
+    document.getElementById('reset').addEventListener('click', function () {
+      document.getElementById('contactForm').reset();
+      // Enlever les bordures d'erreur
+      document.getElementById('nom').classList.remove('erreur');
+      document.getElementById('email').classList.remove('erreur');
+      document.getElementById('message').classList.remove('erreur');
+    });
+  </script>
 </body>
 </html>

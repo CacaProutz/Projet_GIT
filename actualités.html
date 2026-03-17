@@ -1,78 +1,73 @@
-<!DOCTYPE html> <!-- indique que le document est en HTML5 -->
-<html lang="fr"><!-- le HTML est en français -->
-<head> <!-- contient les métadonnées -->
-<meta charset="UTF-8">  <!-- Sert à définir des métadonnées (encodage, description…). -->
-<title>Actualités 53e RT</title> <!-- mettre comme titre actualités 53e rt-->
-<link rel="stylesheet" href="style.css"> <!--définit la relation entre le document courant et une ressource externe
-                                           href et rel possede la valeur style.css qui indique que c'est une feuille de style-->
-</head><!-- contient les métadonnées -->
-<body><!-- Contient tout le contenu visible de la page. -->
-<header> <!-- En-tête du site ou d'une section (logo, menu, etc.). -->
-<h1>Actualités</h1> <!--Titres hiérarchisés (du plus important <h1> au moins important <h6>). -->
-<nav><!--Section de navigation (menu, liens…). -->
-<ul><!--Liste non ordonnée (avec des puces). -->
-    <li><a href="index.html">Accueil</a></li>  <!--Élément d’une liste (ul ou ol) pour synopsis-->
-    <li><a href="unité.html">Présentation de l'unité</a></li>  <!--Élément d’une liste (ul ou ol) pour synopsis-->
-    <li><a href="matériel.html">Matériel et véhicules</a></li>  <!--Élément d’une liste (ul ou ol) pour synopsis-->
-    <li><a href="carte.html">Carte</a></li> <!--Élément d’une liste (ul ou ol) pour synopsis-->
-    <li><a href="contact.html">Contact</a></li>  <!--Élément d’une liste (ul ou ol) pour synopsis-->
-</ul> <!--Liste non ordonnée (avec des puces). -->
-</nav><!--Section de navigation (menu, liens…). -->
-</header><!-- En-tête du site ou d'une section (logo, menu, etc.). -->
-<main>
-<h2>Liste des actualités</h2> <!--Paragraphe de texte. -->
-<div id="newsList"></div> <!-- Les actualités seront ajoutées ici par JS -->
-<h2>Ajouter une actualité</h2> <!--Paragraphe de texte. -->
-<form id="newsForm">
-<input type="text" id="titre" placeholder="Titre de l'actualité">
-<textarea id="contenu" placeholder="Contenu de l'actualité" rows="4"></textarea>
-<button type="button" id="ajouter">Ajouter</button>
-</form>
-</main>
+<!DOCTYPE html> <!-- Indique que le document est en HTML5 -->
+<html lang="fr"> <!-- Langue du document : français -->
+
+<head> <!-- Contient les informations invisibles -->
+  <meta charset="UTF-8"> <!-- Encodage des caractères -->
+  <title>Actualités du 53e RT</title> <!-- Titre de la page -->
+  <link rel="stylesheet" href="style.css"> <!-- Lien vers la feuille de style -->
+</head> <!-- contient les métadonnées -->
+<body> <!-- Contenu visible -->
+<header> <!-- En-tête -->
+  <h1>Actualités</h1>
+  <nav> <!-- Menu de navigation -->
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="unité.html">Présentation de l'unité</a></li>
+      <li><a href="matériel.html">Matériel et véhicules</a></li>
+      <li><a href="carte.html">Carte</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav> <!-- Menu de navigation -->
+</header> <!-- En-tête -->
+<main> <!-- Contenu principal -->
+  <h2>Liste des actualités</h2>
+  <div id="newsList"></div> <!-- Les actualités seront affichées ici -->
+  <h2>Ajouter une actualité</h2>
+  <form id="newsForm"> <!--Définit un formulaire. -->
+    <input type="text" id="titre" placeholder="Titre de l'actualité">
+    <textarea id="contenu" placeholder="Contenu de l'actualité" rows="4"></textarea>  <!--Zone de texte multiligne required = indique que l'utilisateur doit définir une valeur avant que le formulaire puisse être envoyé -->
+    <button type="button" id="ajouter">Ajouter</button> <!--Bouton cliquable.-->
+  </form> <!--Définit un formulaire. -->
+</main> <!-- Contenu principal -->
 <script>
-// Tableau des actualités
-let news = [ //Création et accès aux propriétés d'objets
+// Liste des actualités
+let actualites = [  // Déclaration de variables 
     { titre: "Exercices SIC", contenu: "Déploiement STC-E en multinational." },
     { titre: "OPEX Sahel", contenu: "Projection PROTERRE avec VAB T3." },
-    { titre: "Sentinelle", contenu: "Soutien sécurité intérieur 2026." },
-    { titre: "35 ans Lunéville", contenu: "Cérémonie commémorative." },
+    { titre: "Sentinelle", contenu: "Soutien sécurité intérieure 2026." },
+    { titre: "35 ans Lunéville", contenu: "Cérémonie commémorative." }
 ];
-function afficherActualites() { // Fonction pour afficher les actualités
-const newsDiv = document.getElementById("newsList");
-newsDiv.innerHTML = ""; // vider avant affichage
-news.forEach(actu => {
-const div = document.createElement("div");
-div.style.backgroundColor = "rgba(0,0,0,0.5)";
-div.style.margin = "10px auto";
-div.style.padding = "15px";
-div.style.borderRadius = "8px";
-div.style.width = "80%";
-div.style.textAlign = "left";
-const h3 = document.createElement("h3");
-h3.textContent = actu.titre;
-h3.style.color = "#87cefa";
-const p = document.createElement("p");
-p.textContent = actu.contenu;
-p.style.color = "white";
-div.appendChild(h3);
-div.appendChild(p);
-newsDiv.appendChild(div);
-});
+// Fonction pour afficher les actualités
+function afficherActualites() { // Déclaration de fonctions 
+    let liste = document.getElementById("newsList"); // Sélectionne un élément
+    liste.innerHTML = ""; // Modifie le contenu, les styles ou attributs
+    actualites.forEach(actu => { // Déclaration de fonctions 
+        let bloc = document.createElement("div"); // Déclaration de fonctions 
+        bloc.innerHTML = `<h3>${actu.titre}</h3><p>${actu.contenu}</p>`; // Modifie le contenu, les styles ou attributs
+        liste.appendChild(bloc); // Ajouter un élément à la fin du body
+    });
 }
-// Afficher les actualités dès le chargement
+// Affichage au chargement de la page
 afficherActualites();
-// Ajouter une actualité via le formulaire
-document.getElementById("ajouter").addEventListener("click", () => {
-const titreInput = document.getElementById("titre");
-const contenuInput = document.getElementById("contenu");
-if(titreInput.value.trim() === "" || contenuInput.value.trim() === ""){
-alert("Veuillez remplir les deux champs !");
-return;
-}
-news.push({ titre: titreInput.value.trim(), contenu: contenuInput.value.trim() });
-afficherActualites();
-titreInput.value = "";
-contenuInput.value = "";
+// Ajouter une actualité
+document.getElementById("ajouter").addEventListener("click", () => { // Sélectionne un élément + Gérer les interactions utilisateur
+    let titreInput = document.getElementById("titre"); // Sélectionne un élément
+    let contenuInput = document.getElementById("contenu");// Sélectionne un élément
+    // Vérification des champs
+    if (titreInput.value.trim() === "" || contenuInput.value.trim() === "") { // Conditions
+        alert("Veuillez remplir les deux champs !");
+        return;
+    }
+    // Ajout de l'actualité
+    actualites.push({   // Manipulation de tableau
+        titre: titreInput.value.trim(),  // titre:le nom du champ titreinput:c’est l’élément HTML 
+                                         //.value:récupère ce que l’utilisateur a tapé .trim():enlève les espaces inutiles au début et à la fin
+        contenu: contenuInput.value.trim() //contenu:nom du champ  contenuinput:la zone de texte
+                                           //.value:récupère ce que l’utilisateur a écrit .trim():enlève les espaces au début et à la fin
+    });
+    afficherActualites();
+    titreInput.value = "";  // Réinitialisation du formulaire
+    contenuInput.value = ""; // Réinitialisation du formulaire
 });
 </script>
 </body>

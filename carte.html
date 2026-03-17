@@ -1,0 +1,58 @@
+<!DOCTYPE html>  <!-- indique que le document est en HTML5 -->
+<html lang="fr"> <!-- le HTML est en français -->
+<head> <!-- contient les métadonnées -->
+<meta charset="UTF-8"> <!-- Sert à définir des métadonnées (encodage, description…). -->
+<title>Carte du 53e RT</title><!-- mettre comme titre carte du 53 e RT-->
+<link rel="stylesheet" href="style.css"> <!--définit la relation entre le document courant et une ressource externe
+                                           href et rel possede la valeur style.css qui indique que c'est une feuille de style-->
+</head>
+<body>
+<h1>Carte du 53e RT</h1>
+<p>Clique sur les zones pour afficher des informations sur le 53e RT</p> <!--Paragraphe de texte. -->
+<!-- Conteneur de la carte -->
+ <nav> <!--Section de navigation (menu, liens…). -->
+    <ul>  <!--Liste non ordonnée (avec des puces). -->
+    <li><a href="accueil.html">Accueil</a></li>  <!--Élément d’une liste (ul ou ol) pour synopsis-->
+    <li><a href="unité.html">Présentation de l'unité</a></li>  <!--Élément d’une liste (ul ou ol) pour synopsis-->
+    <li><a href="matérieletvéhicules.html">Matériel et véhicules</a></li> <!--Élément d’une liste (ul ou ol) pour fiche technique -->
+    <li><a href="carte.html">Ou est le 53e RT</a></li> <!--Élément d’une liste (ul ou ol)pour avis-->
+    <li><a href="contact.html">Contacts</a></li> <!--Élément d’une liste (ul ou ol) sur le réalisateur  -->
+    <li><a href="actualités.html">Actualités </a></li> <!--Élément d’une liste (ul ou ol)pour avis-->
+<ul>   <!--Liste non ordonnée (avec des puces). -->
+</nav><!--Section de navigation (menu, liens…). -->
+<div id="carte-container">
+  <!-- Image de la France ou plan du camp -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Alsace-Champagne-Ardenne-Lorraine_et_provinces.svg/500px-Alsace-Champagne-Ardenne-Lorraine_et_provinces.svg.png" alt="Carte de la France" id="carte">
+</div>
+<!-- Info affichée au clic -->
+<div id="info">Clique sur une zone</div>
+<script>
+// Définition des zones cliquables
+let zones = [ // Sélectionne un élément
+  {x: 480, y: 300, info: "Caserne principale et PC de commandement du 53e RT (4 avenue du 30e Groupe de Chasseurs, 54300 Lunéville)"},
+  {x: 470, y: 290, info: "Zone logistique, garages et ateliers (Avenue du 30e Régiment de Chasseurs (zone nord, anciennement usine Fischer), 54300 Lunéville)"},
+  {x: 490, y: 315, info: "Zone d'entraînement et emprises d'exercices (Sud-est de Lunéville, vers Crépey / Bures)"},
+  {x: 430, y: 283, info: "Nancy - Grande garnison à 35 km (Centre-ville de Nancy)"}
+
+];
+// Récupération des éléments HTML
+let container = document.getElementById("carte-container");
+let infoBox = document.getElementById("info");// Ajouter un élément à la fin du body
+zones.forEach(zone => {// Création des points cliquables sur la carte
+  let div = document.createElement("div"); //Sélectionne un élément
+  div.classList.add("zone"); // ajout la classe CSS 
+
+  div.style.left = zone.x + "px";   // Position du point sur la carte
+  div.style.top = zone.y + "px";    // Position du point sur la carte
+    
+  // Action au clic
+  div.addEventListener("click", () => {
+    infoBox.textContent = zone.info;  // affiche l’info
+    div.style.backgroundColor = "lime";// change couleur du marqueur au clic
+  });
+  container.appendChild(div);  // Ajout du point sur la carte
+});
+</script>
+</body>
+</html>
+
