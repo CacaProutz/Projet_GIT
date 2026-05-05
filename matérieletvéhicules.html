@@ -10,13 +10,12 @@
 <!-- Menu de navigation -->
 <nav>
   <ul>
-    <li><a href="accueil.html">Accueil</a></li>
-    <li><a href="unité.html">Présentation de l'unité</a></li>
-    <li><a href="matérieletvéhicules.html">Matériel et véhicules</a></li>
-    <li><a href="carte.html">Où est le 53e RT</a></li>
-    <li><a href="contact.html">Contacts</a></li>
-    <li><a href="actualités.html">Actualités</a></li>
-  </ul>
+     <li><a href="accueil.html">Accueil</a></li> <!-- Élément d'une liste (ul ou ol) pour accès à la page d'accueil -->
+        <li><a href="unité.html">Présentation de l'unité</a></li> <!-- Élément d'une liste pour accéder à la présentation de l'unité -->
+        <li><a href="matérieletvéhicules.html">Matériel et véhicules</a></li> <!-- Élément d'une liste pour accéder aux informations sur le matériel et les véhicules -->
+        <li><a href="carte.html">Ou est le 53e RT</a></li> <!-- Élément d'une liste pour afficher la carte -->
+        <li><a href="contact.html">Contact</a></li> <!-- Élément d'une liste pour accéder à la page de contact -->
+        <li><a href="actualités.html">Actualités</a></li> <!-- Élément d'une liste pour voir les actualités -->
 </nav>
 <!-- Tableau des matériels -->
 <table border="1">
@@ -26,18 +25,22 @@
   </tr>
   <tbody id="tableau"></tbody> <!--zone du tableau où on met les données-->
 </table>
-<!-- Image affichée au survol -->
-<img id="photo" src="" alt="Photo du matériel" style="display:none; width:300px;">
+ <h2>Ajouter un véhicule ou un Matériel</h2>
+  <form id="newsForm"> <!--Définit un formulaire. -->
+    <input type="text" id="nom" placeholder="Nom du matériel ou du véhicule">
+    <textarea id="Catégorie" placeholder="Catégorie" rows="4"></textarea>  <!--Zone de texte multiligne required = indique que l'utilisateur doit définir une valeur avant que le formulaire puisse être envoyé -->
+    <button type="button" id="ajouter">Ajouter</button> <!--Bouton cliquable.-->
+  </form> <!--Définit un formulaire. -->
 <script>
 // Liste des matériels
 let materiels = [
-  {nom:"VAB T3", categorie:"Véhicule", photo:"https://i62.servimg.com/u/f62/11/14/78/36/vab_st12.jpg"},
-  {nom:"Station T2", categorie:"Communication", photo:"https://lh6.googleusercontent.com/proxy/..."},
-  {nom:"Chaîne hertzienne (CHF)", categorie:"Communication", photo:"https://www.opex360.com/wp-content/uploads/28ert-20170828.jpg"},
-  {nom:"PR4G", categorie:"Communication", photo:"https://ezines.homecomputing.fr/fr/rafale/15/Images/06/ER315.jpg"},
-  {nom:"CART", categorie:"Communication", photo:"https://www.accesradio.com/wp-content/uploads/81616-SRX2200_Radio-1-Front_Right3q.jpg"},
-  {nom:"CECORE", categorie:"Centre de commandement", photo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQJOHiWe4P5sqIAIHLVyeKfE_q4BJMKu0qmg&s"},
-  {nom:"PABX", categorie:"Téléphonie", photo:"https://www.techni-contact.com/ressources/images/produits/zoom/telephone-simple-de-pabx-siemens-5168817-1.jpg"}
+  {nom:"VAB T3", categorie:"Véhicule"},
+  {nom:"Station T2", categorie:"Communication"},
+  {nom:"Chaîne hertzienne (CHF)", categorie:"Communication"},
+  {nom:"PR4G", categorie:"Communication"},
+  {nom:"CART", categorie:"Communication"},
+  {nom:"CECORE", categorie:"Centre de commandement"},
+  {nom:"PABX", categorie:"Téléphonie"}
 ];
 // Fonction pour afficher le tableau
 function afficher() {
@@ -50,17 +53,6 @@ function afficher() {
     ligne.innerHTML =
       "<td>" + materiels[i].nom + "</td>" +
       "<td>" + materiels[i].categorie + "</td>";
-    // Quand la souris passe dessus
-    ligne.addEventListener("mouseover", function() {
-      let photo = document.getElementById("photo");
-      photo.src = materiels[i].photo;
-      photo.style.display = "block";
-    });
-    // Quand la souris quitte la ligne
-    ligne.addEventListener("mouseout", function() {
-      let photo = document.getElementById("photo");
-      photo.style.display = "none";
-    });
     // Ajouter la ligne au tableau
     tableau.appendChild(ligne);
   }

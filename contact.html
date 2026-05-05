@@ -18,8 +18,8 @@
       <ul>
         <li><a href="accueil.html">Accueil</a></li> <!-- Élément d'une liste (ul ou ol) pour accès à la page d'accueil -->
         <li><a href="unité.html">Présentation de l'unité</a></li> <!-- Élément d'une liste pour accéder à la présentation de l'unité -->
-        <li><a href="matériel.html">Matériel et véhicules</a></li> <!-- Élément d'une liste pour accéder aux informations sur le matériel et les véhicules -->
-        <li><a href="carte.html">Carte</a></li> <!-- Élément d'une liste pour afficher la carte -->
+        <li><a href="matérieletvéhicules.html">Matériel et véhicules</a></li> <!-- Élément d'une liste pour accéder aux informations sur le matériel et les véhicules -->
+        <li><a href="carte.html">Ou est le 53e RT</a></li> <!-- Élément d'une liste pour afficher la carte -->
         <li><a href="contact.html">Contact</a></li> <!-- Élément d'une liste pour accéder à la page de contact -->
         <li><a href="actualités.html">Actualités</a></li> <!-- Élément d'une liste pour voir les actualités -->
       </ul>
@@ -45,10 +45,11 @@
     // Fonction pour valider le formulaire
     function validerFormulaire() {
       // Récupérer les valeurs des champs
-      const nom = document.getElementById('nom');
-      const email = document.getElementById('email');
-      const message = document.getElementById('message');
-      let valid = true;
+      let nom = document.getElementById('nom'); // Ajouter un élément à la fin du body
+let infoBox = document.getElementById("info");// Ajouter un élément à la fin du body
+      let email = document.getElementById('email');// Ajouter un élément à la fin du body
+      let message = document.getElementById('message');// Ajouter un élément à la fin du body
+      let valid = true; // Ajouter un élément à la fin du body
       // Réinitialisation des bordures
       nom.classList.remove('erreur');
       email.classList.remove('erreur');
